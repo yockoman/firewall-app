@@ -21,7 +21,7 @@ const blockIP = (ip) => {
 // Block all IPs in the list
 blockedIPs.forEach(blockIP);
 
-// Listen for changes (e.g., a file with new IPs to block)
+// Listen for changes (e.g., a file with new IPs to block) test commit
 const fs = require('fs');
 const watchFile = 'blocked-ips.txt';
 

@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const blockedIPs = ['192.168.1.100', '192.168.1.101'];
 
 // Function to block an IP using netsh
-const blockIP = (ip) => {
+function blockIP (ip) {
   exec(`netsh advfirewall firewall add rule name="Block ${ip}" dir=in action=block remoteip=${ip}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error blocking IP ${ip}: ${error.message}`);

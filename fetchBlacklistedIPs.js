@@ -1,14 +1,6 @@
-// const fetch = require('node-fetch');
-// const fs = require('fs');
-// const path = require('path');
-
-function fetchBlacklistedIPs() {
+async function fetchBlacklistedIPs() {
   try {
-    //const { default: fetch } = await import('node-fetch');
-
-    var a =12345;
-    console.log(a);
-    const response = fetch('https://api.example.com/blacklisted-ips', {
+    const response = await fetch('https://api.example.com/blacklisted-ips', {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -18,7 +10,7 @@ function fetchBlacklistedIPs() {
       throw new Error('Network response was not ok ' + response.statusText);
     }
 
-    const data = response.json();
+    const data = await response.json();
     const ipList = data.blacklisted_ips;
 
     const filePath = path.join(__dirname, 'blocked-ips.txt');

@@ -3,7 +3,7 @@ const { blockIP: windowsBlockIP } = require('./blockerWindows');
 const { blockIPLinux: linuxBlockIP } = require('./blockerLinux');
 const { fetchBlacklistedIPs } = require('./fetchBlacklistedIPs');
 
-const blockedIPs = ['192.168.1.100', '192.168.1.101'];
+const blockedIPs = ['192.168.1.101', '192.168.1.102'];
 const interval = 24; // 24 hours
 
 const blockIPs = () => {
@@ -16,6 +16,7 @@ const blockIPs = () => {
         blockedIPs.forEach(linuxBlockIP);
     }
 
+    setInterval(fetchBlacklistedIPs, interval);
     fetchBlacklistedIPs();
 
     // Listen for changes in blocked-ips.txt

@@ -18,9 +18,8 @@ function getOS() {
             osName = 'Unknown';
             break;
     }
-
     return osName;
 }
-module.exports = getOS;
+module.exports = { getOS };
 
-console.log("OS is :" + getOS());
+

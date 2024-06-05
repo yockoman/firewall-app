@@ -7,6 +7,7 @@ function fetchBlacklistedIPs() {
     //const { default: fetch } = await import('node-fetch');
 
     var a =12345;
+    console.log(a);
     const response = fetch('https://api.example.com/blacklisted-ips', {
       headers: {
         'Content-Type': 'application/json',
@@ -29,4 +30,4 @@ function fetchBlacklistedIPs() {
   }
 }
 
-module.exports = fetchBlacklistedIPs;
+module.exports = { fetchBlacklistedIPs };

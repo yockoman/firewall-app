@@ -1,9 +1,6 @@
-const { exec } = require('child_process');
-
-
-// Function to block an IP using iptables
-function blockIP (ip){ 
-  exec(`sudo iptables -A INPUT -s ${ip} -j DROP`, (error, stdout, stderr) => {
+// Function to block an IP using netsh
+function blockIP (ip) {
+  exec(`netsh advfirewall firewall add rule name="Block ${ip}" dir=in action=block remoteip=${ip}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error blocking IP ${ip}: ${error.message}`);
       return;
@@ -15,3 +12,6 @@ function blockIP (ip){
     console.log(`Blocked IP: ${ip}`);
   });
 };
+
+
+module.exports = blockIP;

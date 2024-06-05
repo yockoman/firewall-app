@@ -21,5 +21,6 @@ function getOS() {
 
     return osName;
 }
+module.exports = getOS;
 
-console.log(`Operating System: ${getOS()}`);
+console.log("OS is :" + getOS());

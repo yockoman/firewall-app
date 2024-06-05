@@ -1,12 +1,12 @@
-import { blockIp as blockIPWindows } from 'blockerWindows.js';
-import { blockIp as blockIPLinux } from 'blockerLinux.js';
-import { getOS } from 'detectOS.js';
-import { getBlacklistedIPs } from 'fetchBlacklistedIPs.js';
-
+const windowsBlocker = require('./blockerWindows.cjs');
+const linuxBlocker = require('./blockerLinux.cjs');
+const getOS = require('./detectOS.cjs');
+const fetchBlacklistedIPs = require('./fetchBlacklistedIPs.cjs');
+const { exec } = require('child_process');
 
 // List of IPs to block
 const blockedIPs = ['192.168.1.100', '192.168.1.101'];
-const interval = 24 * 60 * 60 * 1000; // 24 hours
+const interval = 24; // 24 hours
 
 const blockIPs = () => {
         let os =  getOS();
@@ -14,14 +14,14 @@ const blockIPs = () => {
        
         // Block all IPs in the list
         //let blockedIPs = get from API
-        if(os === 'Windows'){
-            blockedIPs.forEach(blockIPWindows);
+        if(os == 'Windows'){
+            blockedIPs.forEach(windowsBlocker.blockIP);
         }
-        else if (os === 'Linux'){
-            blockedIPs.forEach(blockIPLinux);
+        else if (os == 'Linux'){
+            blockedIPs.forEach(linuxBlocker.blockIPLinux);
         }
 
-        setInterval(fetchBlacklistedIPs, interval);
+        // setInterval(fetchBlacklistedIPs, interval);
         fetchBlacklistedIPs();
 
         // Listen for changes (e.g., a file with new IPs to block) test commit

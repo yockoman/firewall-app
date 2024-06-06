@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "firewall-app",
   "main": "index.js",
-  "type":"commonjs",
+  "type": "commonjs",
   "scripts": {
     "test": "npm index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2"
+  }
 }

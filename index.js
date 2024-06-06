@@ -3,24 +3,27 @@ const { blockIP: windowsBlockIP } = require('./blockerWindows');
 const { blockIPLinux: linuxBlockIP } = require('./blockerLinux');
 const { fetchBlacklistedIPs } = require('./fetchBlacklistedIPs');
 
-const blockedIPs = ['192.168.1.101', '192.168.1.102'];
-const interval = 24; // 24 hours
 
-const blockIPs = () => {
+const blockIPs = async () => {
     let os = getOS();
+    const fs = require('fs');
+    const path = require('path');
+
+    //await fetchBlacklistedIPs();
+    //setInterval(fetchBlacklistedIPs, interval);
+    const filePath = path.join(__dirname, 'blocked-ips.txt');
+    const data = fs.readFileSync(filePath, 'utf8');
+    const ipList = data.split('\n').filter(ip => ip.trim() !== '');
 
     // Block IPs based on OS
     if (os === 'Windows') {
-        blockedIPs.forEach(windowsBlockIP);
+        ipList.forEach(windowsBlockIP);
     } else if (os === 'Linux') {
-        blockedIPs.forEach(linuxBlockIP);
+        ipList.forEach(linuxBlockIP);
     }
 
-    setInterval(fetchBlacklistedIPs, interval);
-    fetchBlacklistedIPs();
-
     // Listen for changes in blocked-ips.txt
-    const fs = require('fs');
+    
     const watchFile = 'blocked-ips.txt';
 
     fs.watch(watchFile, (eventType, filename) => {

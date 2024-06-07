@@ -26,7 +26,19 @@ function blockIP (ip) {
           console.error(`stderr: ${stderr}`);
           return;
         }
-        console.log(`Blocked IP: ${ip}`);
+        console.log(`Blocked Inbound IP: ${ip}`);
+      });
+
+      exec(`netsh advfirewall firewall add rule name="Block ${ip}" dir=out action=block remoteip=${ip}`, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error blocking IP ${ip}: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+        console.log(`Blocked Outbound IP: ${ip}`);
       });
     }
   });

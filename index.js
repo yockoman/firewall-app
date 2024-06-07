@@ -2,15 +2,15 @@ const { getOS } = require('./detectOS');
 const { blockIP: windowsBlockIP } = require('./blockerWindows');
 const { blockIPLinux: linuxBlockIP } = require('./blockerLinux');
 const { fetchBlacklistedIPs } = require('./fetchBlacklistedIPs');
-
+const interval = 24 * 60 * 60 * 1000; // 24 hours
 
 const blockIPs = async () => {
     let os = getOS();
     const fs = require('fs');
     const path = require('path');
 
-    //await fetchBlacklistedIPs();
-    //setInterval(fetchBlacklistedIPs, interval);
+    await fetchBlacklistedIPs(); 
+    //setInterval(fetchBlacklistedIPs, interval); //uncomment for this to be executed every 24 hours
     const filePath = path.join(__dirname, 'blocked-ips.txt');
     const data = fs.readFileSync(filePath, 'utf8');
     const ipList = data.split('\n').filter(ip => ip.trim() !== '');

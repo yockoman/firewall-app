@@ -5,7 +5,7 @@ const fs = require('fs');
 async function fetchBlacklistedIPs() {
   const API_KEY = 'e0769b72dcd4de0e37dc3714244c2991a534f54ed4bb5fd63ff0e5014c751507ef6bc1a0ecdfada2'; 
   try {
-    //after hitting this endpoint 5 times in a day it returns status code 429 too many requests.
+    // After hitting this endpoint 5 times in a day it returns status code 429 too many requests.
     // const response = await axios.get('https://api.abuseipdb.com/api/v2/blacklist', {
     //   params: {
     //     limit: '500000'

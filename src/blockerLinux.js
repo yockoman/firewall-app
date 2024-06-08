@@ -1,4 +1,5 @@
 // Function to block an IP using iptables
+const { exec } = require('child_process');
 function blockIPLinux (ip){ 
   exec(`iptables -L -n | grep ${ip}`, (listError, listStdout, listStderr) => {
     if (listError && !listError.message.includes("grep")) {

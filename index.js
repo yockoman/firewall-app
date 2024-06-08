@@ -1,12 +1,12 @@
-const { getOS } = require('./detectOS');
-const { blockIP: windowsBlockIP } = require('./blockerWindows');
-const { blockIPLinux: linuxBlockIP } = require('./blockerLinux');
-const { fetchBlacklistedIPs } = require('./fetchBlacklistedIPs');
+const { getOS } = require('./src/detectOS');
+const { blockIP: windowsBlockIP } = require('./src/blockerWindows');
+const { blockIPLinux: linuxBlockIP } = require('./src/blockerLinux');
+const { fetchBlacklistedIPs } = require('./src/fetchBlacklistedIPs');
+const findSpecificIP = require('./src/findSpecificIP');
 const fs = require('fs');
 const path = require('path');
-const interval = 24 * 60 * 60 * 1000; // 24 hours
 
-const blockIPs = async () => {
+const blockIPs = async (pathToCommunicationHistoryFile, numberOfDaysAgo) => {
     fetchBlacklistedIPs().then(() => {
         const filePath = path.join(__dirname, 'blocked-ips.txt');
         const data = fs.readFileSync(filePath, 'utf8');
@@ -17,6 +17,15 @@ const blockIPs = async () => {
             ipList.forEach(windowsBlockIP);
         } else if (os === 'Linux') {
             ipList.forEach(linuxBlockIP);
+        }
+
+        if(pathToCommunicationHistoryFile != undefined && pathToCommunicationHistoryFile != ''){
+            if(numberOfDaysAgo == undefined || numberOfDaysAgo < 1 ){
+                numberOfDaysAgo = 1;
+            }
+            ipList.forEach(ip => {
+                findSpecificIP(pathToCommunicationHistoryFile, ip, numberOfDaysAgo);
+            });
         }
         
         // Listen for changes in blocked-ips.txt
@@ -48,4 +57,6 @@ const blockIPs = async () => {
     
 };
 
-blockIPs();
+const pathToCommunicationHistoryFile = process.argv[2];
+const numberOfDaysAgo = process.argv[3];
+blockIPs(pathToCommunicationHistoryFile,numberOfDaysAgo);

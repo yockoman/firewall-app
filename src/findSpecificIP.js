@@ -36,6 +36,11 @@ function findSpecificIP(filePath, specificIP, numberOfDaysAgo) {
         const datetimeMatch = line.match(datetimeRegex);
         const ipMatches = line.match(ipRegex);
 
+         // Skip lines that do not contain a datetime or an IP address
+         if (!datetimeMatch || !ipMatches) {
+            return;
+        }
+
         if (datetimeMatch && ipMatches) {
             const datetime = DateTime.fromFormat(datetimeMatch[0], 'yyyy-MM-dd HH:mm:ss');
             if (datetime > timeframe) {

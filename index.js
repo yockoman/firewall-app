@@ -8,6 +8,8 @@ const path = require('path');
 
 const blockIPs = async (pathToCommunicationHistoryFile, numberOfDaysAgo) => {
     fetchBlacklistedIPs().then(() => {
+        // pathToCommunicationHistoryFile = 'test.txt';
+        // numberOfDaysAgo = 6;
         const filePath = path.join(__dirname, 'blocked-ips.txt');
         const data = fs.readFileSync(filePath, 'utf8');
         const ipList = data.split('\n').filter(ip => ip.trim() !== '');

@@ -1,12 +1,12 @@
 {
   "name": "firewall-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "firewall-app",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
     "test": "npm index.js",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "author": "ytsanev",
   "license": "ISC",

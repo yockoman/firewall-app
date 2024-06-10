@@ -4,7 +4,7 @@ const fs = require('fs');
 
 async function fetchBlacklistedIPs() {
  
-   const API_KEY = '' //your AbuseIP API key; 
+   const API_KEY = '975d44513ad9cf16ef05cc5fa508a6722ec17b44a9f5fc8e80fe054589cd43c6ab450c7b074724c6' //your AbuseIP API key; 
    try {
     var ipList;
     //After hitting this endpoint 5 times in a day it returns status code 429 too many requests.
@@ -12,7 +12,7 @@ async function fetchBlacklistedIPs() {
     //await axios.get('https://api.abuseipdb.com/api/v2/blacklist', {
     await axios.get('http://localhost:3000', {
       params: {
-        limit: '500000'
+        limit: '50'
       },
       headers: {
         'Accept': 'text/plain',
@@ -24,8 +24,8 @@ async function fetchBlacklistedIPs() {
         throw new Error('Network response was not ok ' + response.statusText);
       }
       var ipList = response.data.split('\n');
-      const filePath = path.join(__dirname, 'blocked-ips.txt');
-      
+      const filePath = path.join(__dirname, '/../blocked-ips.txt');
+
       //create blocked-ips.txt file if it doesn't exist.
       if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, '');

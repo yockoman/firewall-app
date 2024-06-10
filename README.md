@@ -30,5 +30,7 @@ Inbound rule:
 ![alt text](image-5.png)
 
 When trying to interact with application from a blacklisted IP we can observe that the packets are dropped from the firewall logs:
-
 ![alt text](image-6.png)
+
+The way I was able to test this interaction form a banned IP was to manually add an IP that is not from the list returned from the AbuseIP API and 
+make an API call from the manually added IP address that I control.

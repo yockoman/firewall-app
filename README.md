@@ -12,7 +12,7 @@ node index.js
 node index.js "directory to communication history file" -- for example node index.js test.txt
 node index.js "directory to communication history file" "number of days in the past to search for in the history file" -- for example node index.js test.txt 6
 
-WINDOWS:
+!!!!WINDOWS:
 Firstly when running the application with both the optional input arguments the application gets a list of blacklisted IP addresses, 
 creates firewall Inbound and Outbound firewall rules, then runs through all these IP addresses and searches for interactions from these IPs 
 in the inputted log file, in my case the firwall log file (In order to work the firewall logging must be enabled - https://help.pdq.com/hc/en-us/articles/360053040851-See-Firewall-Activity-in-Windows-Defender-Firewall-Logs). The output of the console can be seen here:

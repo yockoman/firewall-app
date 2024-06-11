@@ -36,8 +36,8 @@ The way I was able to test this interaction form a banned IP was to manually add
 make an API call from the manually added IP address that I control.
 
 Here are some screen shots from the Linux environment.
-Search in linux log file 
+Search in linux log file. -- /var/log/iptables.log 
 ![alt text](image-7.png)
 
-Inserted rules in the iptables
+Inserted rules in the iptables.
 ![alt text](image-8.png)

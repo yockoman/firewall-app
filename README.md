@@ -34,3 +34,10 @@ When trying to interact with application from a blacklisted IP we can observe th
 
 The way I was able to test this interaction form a banned IP was to manually add an IP that is not from the list returned from the AbuseIP API and 
 make an API call from the manually added IP address that I control.
+
+
+Search in linux log file 
+![alt text](image-7.png)
+
+Inserted rules in the iptables
+![alt text](image-8.png)

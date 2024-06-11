@@ -30,7 +30,8 @@ const getIPAddresses = async () => {
                 '61.177.172.179',
                 '123.31.29.19',
                 '192.168.1.6',
-                '192.168.1.4'
+                '192.168.1.4',
+                '192.168.1.255'
             ]
         ); // Example IPs
       }, 1000); // Simulating an async delay

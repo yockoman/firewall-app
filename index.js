@@ -8,10 +8,10 @@ const path = require('path');
 
 const blockIPs = async (pathToCommunicationHistoryFile, numberOfDaysAgo) => {
     fetchBlacklistedIPs().then(() => {
-        const filePath = path.join(__dirname, 'blocked-ips.txt');
-        const data = fs.readFileSync(filePath, 'utf8');
-        const ipList = data.split('\n').filter(ip => ip.trim() !== '');
-        let os = getOS();
+         const filePath = path.join(__dirname, 'blocked-ips.txt');
+         const data = fs.readFileSync(filePath, 'utf8');
+         const ipList = data.split('\n').filter(ip => ip.trim() !== '');
+         let os = getOS();
          // Block IPs based on OS
         if (os === 'Windows') {
             ipList.forEach(windowsBlockIP);

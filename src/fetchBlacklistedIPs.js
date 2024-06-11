@@ -9,8 +9,8 @@ async function fetchBlacklistedIPs() {
     var ipList;
     //After hitting this endpoint 5 times in a day it returns status code 429 too many requests.
     //uncomment for getting the AbuseIPAPI blacklisted IP address list.
-    await axios.get('https://api.abuseipdb.com/api/v2/blacklist', {
-    //await axios.get('http://localhost:3000', {
+    //await axios.get('https://api.abuseipdb.com/api/v2/blacklist', {
+    await axios.get('http://localhost:3000', {
       params: {
         limit: '50'
       },

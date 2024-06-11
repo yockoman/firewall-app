@@ -35,7 +35,7 @@ When trying to interact with application from a blacklisted IP we can observe th
 The way I was able to test this interaction form a banned IP was to manually add an IP that is not from the list returned from the AbuseIP API and 
 make an API call from the manually added IP address that I control.
 
-
+Here are some screen shots from the Linux environment.
 Search in linux log file 
 ![alt text](image-7.png)
 
